@@ -19,7 +19,7 @@ Vamos a crear un página **php** vulnerable.
 
 ## Código vulnerable
 ---
-En primer lugar los que haré será crear un archivo vulnerable **comment.php** en el entorno de pruebas **Lamp** dentro del directorio **www**. Dentro de www lo creo un directorio **xss** donde meteré el **comment.php** .Dentro de el irá  el siguiente contenido.
+En primer lugar los que haré será crear un archivo vulnerable **comment.php** en el entorno de pruebas **Lamp** dentro del directorio **www**. Dentro de `www`  creo un directorio **xss** donde meteré el **comment.php** .Dentro de él irá  el siguiente contenido.
 ![](imagenes/xss1.png)
 
 ~~~
@@ -47,6 +47,7 @@ Este fragmento de código genera un formulario que permite al usuario introducir
 Para realizar las explotaciones tendremos que abrir el navegador y acceder a la aplicación: <http://localhost/comment.php> esto nos abrirá un formulario.
 
 **Explotación 1**
+
 En dicho formulario lo que vamos a realizar es introducir un código **JS** para comprobar que el formulario no está lo suficientemente securizado.
 
 ~~~
@@ -74,7 +75,7 @@ Vemos que  nos redirige a una página de phishing.
 ---
 Con este ataque, un atacante podría robar sesiones de usuarios.
 
-- creamos un  **servidor atacante** en el servidor web. Para ello creamos directorio de nombre `cookiestealer`dentro de `www` en el cual tendrá un fichero `index.php`con el siguiente código  obtenido de [este archivo php](files/steal.php). tabien crearemos un fichero `cookies.txt` en la misma ruta donde se encuentra `index.php` y le daremos los permisos corrspondientes.  
+- Creamos un  **servidor atacante** en el servidor web. Para ello creamos directorio de nombre `cookiestealer`dentro de `www` en el cual tendrá un fichero `index.php`con el siguiente código  obtenido de [este archivo php](files/steal.php). Tambien crearemos un fichero `cookies.txt` en la misma ruta donde se encuentra `index.php` y le daremos los permisos corrspondientes.  
 ~~~
 ![](imagenes/xss7.png)
 
@@ -163,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ![](imagenes/xss11.png)
 
-La función que hemos creado al principio del documento: filter_string_polyfill nos va a eliminar todos los caracteres peligrosos y nos cambia caracteres conflictivos.
+La función que hemos creado al principio del documento: `filter_string_polyfill` nos va a eliminar todos los caracteres peligrosos y nos cambia caracteres conflictivos.
 
 Una vez creada `comment1.php` entramos como anteriormente pero con <http://localhost/xss/comment1.php> 
 ![](imagenes/xss12.png)
@@ -181,7 +182,7 @@ htmlspecialchars() convierte caracteres especiales en sus equivalentes entidades
 Con esta corrección, el intento de inyección de JavaScript se mostrará como texto en lugar de ejecutarse.
 
 
-Para realizar la sanitización d ela entrada con `htmlspecialchars()` voy a crear un archivo comment2.php con el siguiente código
+Para realizar la sanitización d ela entrada con `htmlspecialchars()` voy a crear un archivo **comment2.php** con el siguiente código
 
 ~~~
 <?php
@@ -204,7 +205,7 @@ if (isset($_POST['comment'])) {
 
 ![](imagenes/xss14.png)
 
-Aunque usar htmlspecialchars() es una buena medida para prevenir ataques XSS, todavía se puede mejorar la
+Aunque usar `htmlspecialchars()` es una buena medida para prevenir ataques XSS, todavía se puede mejorar la
 seguridad y funcionalidad del código con los siguientes puntos:
 comprobamos resultado accediendo a la URL.
 ![](imagenes/xss15.png)
